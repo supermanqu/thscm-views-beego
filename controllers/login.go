@@ -11,7 +11,7 @@ import (
 var GlobalSessions *session.Manager
 
 func init() {
-	GlobalSessions, _ = session.NewManager("mysql", `{"cookieName":"session.toneworld.com","gclifetime":3600,"ProviderConfig":"root:Classes12@tcp(localhost:3306)/ses?strict=true"}`)
+	GlobalSessions, _ = session.NewManager("mysql", `{"cookieName":"sessiontoneworldcom","gclifetime":3600,"ProviderConfig":"root:Classes12@tcp(localhost:3306)/ses?strict=true"}`)
 	go GlobalSessions.GC()
 }
 

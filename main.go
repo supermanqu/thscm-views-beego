@@ -14,7 +14,7 @@ var FilterUser = func(ctx *context.Context) {
 	if ctx.Request.RequestURI == "/login" {
 		return
 	}
-	sid := ctx.GetCookie("session.toneworld.com")
+	sid := ctx.GetCookie("sessiontoneworldcom")
 	if sid == "" {
 		ctx.Redirect(302, "/login")
 		return
@@ -44,15 +44,15 @@ var FilterUser = func(ctx *context.Context) {
 func main() {
 	orm.Debug = true
 	orm.RunSyncdb("default", false, true)
-	beego.SessionOn = true
+	//beego.SessionOn = true
 	//beego.SessionProvider = "memory"
 
 	//beego.SessionProvider = "mysql"
 
 	//beego.SessionGCMaxLifetime = 60 * 60 //60 seconds
 	//beego.SessionName = "session.toneworld.com"
-	beego.SessionCookieLifeTime = -1 //60 seconds
-	beego.SessionAutoSetCookie = true
+	//beego.SessionCookieLifeTime = -1 //60 seconds
+	//beego.SessionAutoSetCookie = true
 
 	beego.InsertFilter("/", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/*", beego.BeforeRouter, FilterUser)
