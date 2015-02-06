@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"gopkg.in/mgo.v2/bson"
 	"tone-world.com/models/mongo"
 )
 
@@ -17,11 +18,11 @@ func (this *MenuController) Get() {
 	collection := conn.DB("thscm").C("menu")
 
 	var result []map[string]interface{}
-	iter := collection.Find(nil).Limit(100).Iter()
+	iter := collection.Find(bson.M{"menuName": "销售"}).Limit(100).Iter()
 	err := iter.All(&result)
 	if err != nil {
 		return
 	}
 
-	this.Ctx.Output.Json(result, true, false)
+	this.Ctx.Output.Json(result[0]["items"], true, false)
 }
