@@ -24,5 +24,5 @@ func (this *MenuController) Get() {
 		return
 	}
 
-	this.Ctx.Output.Json(result[0]["items"], true, false)
+	this.Ctx.Output.Json(result, true, false)
 }

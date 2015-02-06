@@ -11,7 +11,7 @@ import (
 var GlobalSessions *session.Manager
 
 func init() {
-	GlobalSessions, _ = session.NewManager("mysql", `{"cookieName":"sessiontoneworldcom","gclifetime":3600,"ProviderConfig":"`+beego.AppConfig.String("mysql::url")+`"}`)
+	GlobalSessions, _ = session.NewManager("mysql", `{"cookieName":"sessiontoneworldcom","gclifetime":3600,"ProviderConfig":"`+beego.AppConfig.String("sessiondb::url")+`"}`)
 	go GlobalSessions.GC()
 }
 
