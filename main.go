@@ -11,6 +11,12 @@ import (
 )
 
 var FilterUser = func(ctx *context.Context) {
+	if beego.AppConfig.String("runmode") == "dev" {
+		ctx.Output.Header("Access-Control-Allow-Origin", "*")
+		ctx.Output.Header("Access-Control-Allow-Methods", "GET")
+		ctx.Output.Header("Access-Control-Max-Age", "60")
+		return
+	}
 	if ctx.Request.RequestURI == "/login" {
 		return
 	}
