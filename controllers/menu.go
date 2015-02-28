@@ -11,14 +11,16 @@ type MenuController struct {
 }
 
 func (this *MenuController) Get() {
+	var mType string
+	this.Ctx.Input.Bind(&mType, "type")
 
 	conn := mongo.Conn()
 	defer conn.Close()
 
-	collection := conn.DB("thscm").C("menu")
+	collection := conn.DB("se3w").C("menu")
 
 	var result []map[string]interface{}
-	iter := collection.Find(bson.M{"menuName": "销售"}).Limit(100).Iter()
+	iter := collection.Find(bson.M{"name": mType}).Limit(100).Iter()
 	err := iter.All(&result)
 	if err != nil {
 		return
