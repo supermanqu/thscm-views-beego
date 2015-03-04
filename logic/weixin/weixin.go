@@ -1,4 +1,4 @@
-package main
+package weixin
 
 import (
 	"crypto/sha1"
@@ -10,14 +10,13 @@ import (
 var token string = "ofMA_tz8JXR_Grf6Rn3A5x6kClCk"
 
 type SignatureBody struct {
-	signature string
-	timestamp string
-	nonce     string
-	echostr   string
+	Signature string
+	Timestamp string
+	Nonce     string
 }
 
 func CheckSignature(body *SignatureBody) bool {
-	strs := []string{token, body.timestamp, body.nonce}
+	strs := []string{token, body.Timestamp, body.Nonce}
 	sort.Strings(strs)
 	var str string
 
@@ -31,10 +30,10 @@ func CheckSignature(body *SignatureBody) bool {
 
 	str = hex.EncodeToString(bs)
 	fmt.Println(str)
-	return str == body.signature
+	return str == body.Signature
 }
 func main() {
-	sb := SignatureBody{"a6c0b1fc0c57d12fa258d763a551e64408a4f3e7", "d", "c", "b"}
+	sb := SignatureBody{"a6c0b1fc0c57d12fa258d763a551e64408a4f3e7", "d", "c"}
 
 	fmt.Println(CheckSignature(&sb))
 }

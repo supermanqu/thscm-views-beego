@@ -13,4 +13,5 @@ func init() {
 	beego.Router("/login", &controllers.LoginController{})
 	beego.Router("/menu", &controllers.MenuController{})
 	beego.AutoRouter(&controllers.GoodsController{})
+	beego.AutoRouter(&controllers.WeixinController{})
 }
