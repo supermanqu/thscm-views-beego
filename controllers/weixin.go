@@ -3,7 +3,7 @@ package controllers
 import (
 	"fmt"
 	"github.com/astaxie/beego"
-	"tone-world.com/outer/weixin"
+	"tone-world.com/logic/weixin"
 )
 
 type WeixinController struct {
@@ -19,6 +19,8 @@ func (c *WeixinController) Token() {
 	timestamp := c.GetString("timestamp")
 	nonce := c.GetString("nonce")
 	echostr := c.GetString("echostr")
+
+	fmt.Println("++++++++++++++++++++++++++++++++")
 
 	sb := weixin.SignatureBody{signature, timestamp, nonce}
 	passed := weixin.CheckSignature(&sb)

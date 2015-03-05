@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"gopkg.in/mgo.v2/bson"
-	"tone-world.com/common/mongo"
+	"tone-world.com/models/mongo"
 )
 
 type MenuController struct {
@@ -17,7 +17,7 @@ func (this *MenuController) Get() {
 	conn := mongo.Conn()
 	defer conn.Close()
 
-	collection := conn.DB(mongo.TS).C("menu")
+	collection := conn.DB("se3w").C("menu")
 
 	var result []map[string]interface{}
 	iter := collection.Find(bson.M{"name": mType}).Limit(100).Iter()
